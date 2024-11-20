@@ -42,3 +42,5 @@ This script runs a python apps `consumer.py` and `producer.py`
    ```
 
 2. **Run the python codes**: Run the producer and consumer scripts.
+
+![image](https://github.com/user-attachments/assets/e652560e-da32-48c1-b475-732f5eb8600d)

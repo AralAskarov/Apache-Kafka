@@ -51,3 +51,9 @@ git push origin "feature/update-kafka-config"
 
 
 ![image](https://github.com/user-attachments/assets/198bc408-fea2-42d2-b301-42ac8ecc0c55)
+
+
+![image](https://github.com/user-attachments/assets/7081296e-31ca-46c9-8ba8-b95d42ab69bb)
+
+
+![image](https://github.com/user-attachments/assets/3ba31d03-07cb-43cb-bd4a-ea87e6bdb171)
