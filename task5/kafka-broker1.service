@@ -1,0 +1,14 @@
+[Unit]
+Description=Apache Kafka Broker 1
+After=network.target
+
+[Service]
+User=azureuser
+Group=azureuser
+ExecStart=/home/azureuser/kafka/bin/kafka-server-start.sh /home/azureuser/kafka/ssl/brokers/broker1/broker1.properties
+ExecStop=/home/azureuser/kafka/bin/kafka-server-stop.sh
+Restart=on-failure
+Environment="KAFKA_OPTS=-Djava.security.auth.login.config=/home/azureuser/kafka/ssl/brokers/broker1/kafka_server_jaas.conf"
+
+[Install]
+WantedBy=multi-user.target
