@@ -66,3 +66,20 @@ bin/kafka-console-consumer.sh \h \
 ```
 ![image](https://github.com/user-attachments/assets/bb018d88-9afc-4d63-ba51-9dfa8b716cd4)
 ![image](https://github.com/user-attachments/assets/4144bbd1-f937-4dc1-82d1-441b5933e31c)
+
+
+lets try with invalid data
+invalid_client.properties
+```bash
+security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="alice" \
+    password="wrong-password";
+```
+
+```bash
+bin/kafka-console-producer.sh     --broker-list localhost:9092     --topic my-topic     --producer.config /home/azureuser/kafka/ssl/clients/wrong/invalid_client.properties
+```
+
+![image](https://github.com/user-attachments/assets/c39ed702-56d8-4ed4-b986-40212840994b)
