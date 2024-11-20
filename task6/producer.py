@@ -3,16 +3,16 @@ import json
 import time
 import random
 
-BROKER_LIST = ["localhost:9092", "localhost:9093", "localhost:9094"]
-TOPIC = "test-topic"
+BROKER_LIST = ["localhost:9092", "localhost:9094", "localhost:9095"]
+TOPIC = "task6"
 
 
 producer = KafkaProducer(
     bootstrap_servers=BROKER_LIST,
     security_protocol='SASL_PLAINTEXT',
     sasl_mechanism='PLAIN',
-    sasl_plain_username='client_producer',
-    sasl_plain_password='client-secret',
+    sasl_plain_username='admin',
+    sasl_plain_password='admin-secret',
     value_serializer=lambda v: json.dumps(v).encode('utf-8'),
     retries=5
 )

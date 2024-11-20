@@ -2,7 +2,7 @@
 
 BROKER_SERVICES=("kafka-broker1.service" "kafka-broker2.service" "kafka-broker3.service")
 
-LOG_FILE="/var/log/kafka_recovery_simulator.log"
+LOG_FILE="/home/azureuser/kafka/ssl/log/kafka_recovery_simulator.log"
 
 log_message() {
     echo "$(date +"%Y-%m-%d %H:%M:%S") - $1" | tee -a "$LOG_FILE"
@@ -11,7 +11,7 @@ log_message() {
 stop_random_broker() {
     RANDOM_BROKER=${BROKER_SERVICES[$RANDOM % ${#BROKER_SERVICES[@]}]}
     log_message "Stopping broker: $RANDOM_BROKER"
-    systemctl stop $RANDOM_BROKER
+    sudo systemctl stop $RANDOM_BROKER
 
     sleep 5 
     if ! systemctl is-active --quiet $RANDOM_BROKER; then
