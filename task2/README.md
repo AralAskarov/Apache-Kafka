@@ -83,3 +83,38 @@ bin/kafka-console-producer.sh     --broker-list localhost:9092     --topic my-to
 ```
 
 ![image](https://github.com/user-attachments/assets/c39ed702-56d8-4ed4-b986-40212840994b)
+
+
+ACL
+to add ACL we need admin client admin_client.properties
+```bash
+security.protocol=SASL_PLAINTEXT                                                         
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
+    username="admin" \
+    password="admin-secret";
+
+```
+and need to modify broker properties
+```bash
+authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
+allow.everyone.if.no.acl.found=false
+super.users=User:admin
+```
+
+To check Alice's ACL
+```bash
+bin/kafka-acls.sh --list --bootstrap-server localhost:9092     --principal User:alice --command-config /home/azureuser/kafka/ssl/clients/admin/admin_client.properties
+```
+![image](https://github.com/user-attachments/assets/68052287-b34b-4c8d-acb2-005dda8a2466)
+there is no acl for Alice. lets add
+```bash
+bin/kafka-acls.sh --add \
+    --allow-principal User:alice \
+    --operation Read \
+    --operation Write \
+    --topic my-topic \
+    --bootstrap-server localhost:9092 \
+    --command-config /home/azureuser/kafka/ssl/clients/admin/admin_client.properties
+```
+![image](https://github.com/user-attachments/assets/293af531-e3e3-48be-9cce-d0dfbfd742ee)
